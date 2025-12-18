@@ -8,7 +8,8 @@ def setup(settings):
 
     settings.INSTALLED_APPS += ["some_custom_plugin_dep"]
     """
-    CLIMWEB_DOMAIN = os.environ.get("CLIMWEB_DOMAIN", "http://localhost:8000")
+
+    CLIMWEB_DOMAIN = "https://" + os.environ.get("CLIMWEB_DOMAIN", "http://localhost:8000")
     OIDC_REALM = os.environ.get("OIDC_REALM", "master")
 
     settings.INSTALLED_APPS += ["mozilla_django_oidc"]
