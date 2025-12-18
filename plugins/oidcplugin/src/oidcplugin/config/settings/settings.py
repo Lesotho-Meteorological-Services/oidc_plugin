@@ -12,7 +12,7 @@ def setup(settings):
     settings.OIDC_RP_CLIENT_ID = "share"
     settings.OIDC_RP_CLIENT_SECRET = "ypz9oJ2MJnCjjl1m3NPCYh5OmbbKOyAN"
 
-    settings.OIDC_RP_CALLBACK_URL = env.str("OIDC_RP_CALLBACK_URL", "-")
+    settings.OIDC_RP_CALLBACK_URL = "https://share.csis.gov.ls/oidc/callback/"
     settings.OIDC_RP_SIGN_ALGO = "RS256"
 
 # OIDC_OP_AUTHORIZATION_ENDPOINT = "http://192.168.1.104:8081/realms/master/protocol/openid-connect/auth"
