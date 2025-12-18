@@ -5,4 +5,4 @@
 #    pip-compile --output-file=base.txt base.in
 #
 # Install mozilla-django-oidc for OIDC authentication
-mozilla-django-oidc==8.1.0
+mozilla-django-oidc==4.0.1
