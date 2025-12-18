@@ -9,7 +9,8 @@ def setup(settings):
     settings.INSTALLED_APPS += ["some_custom_plugin_dep"]
     """
 
-    CLIMWEB_DOMAIN = "https://" + os.environ.get("CLIMWEB_DOMAIN", "http://localhost:8000")
+    CLIMWEB_HOST = "https://" + os.environ.get("CLIMWEB_HOST", "http://localhost:80")
+    KEYCLOAK_HOST = "https://" + os.environ.get("KEYCLOAK_HOST", "http://localhost:8080")
     OIDC_REALM = os.environ.get("OIDC_REALM", "master")
 
     settings.INSTALLED_APPS += ["mozilla_django_oidc"]
@@ -18,13 +19,13 @@ def setup(settings):
     settings.OIDC_RP_CLIENT_ID =  os.environ.get("OIDC_RP_CLIENT_ID", "climweb-client")
     settings.OIDC_RP_CLIENT_SECRET = os.environ.get("OIDC_RP_CLIENT_SECRET", "climweb-secret")
 
-    settings.OIDC_RP_CALLBACK_URL = f"{CLIMWEB_DOMAIN}/oidc/callback/"
+    settings.OIDC_RP_CALLBACK_URL = f"{CLIMWEB_HOST}/oidc/callback/"
     settings.OIDC_RP_SIGN_ALGO = "RS256"
 
-    settings.OIDC_OP_AUTHORIZATION_ENDPOINT = f"{CLIMWEB_DOMAIN}/realms/{OIDC_REALM}/protocol/openid-connect/auth"
-    settings.OIDC_OP_TOKEN_ENDPOINT = f"{CLIMWEB_DOMAIN}/realms/{OIDC_REALM}/protocol/openid-connect/token"
-    settings.OIDC_OP_USER_ENDPOINT = f"{CLIMWEB_DOMAIN}/realms/{OIDC_REALM}/protocol/openid-connect/userinfo"
-    settings.OIDC_OP_JWKS_ENDPOINT = f"{CLIMWEB_DOMAIN}/realms/{OIDC_REALM}/protocol/openid-connect/certs"
+    settings.OIDC_OP_AUTHORIZATION_ENDPOINT = f"{KEYCLOAK_HOST}/realms/{OIDC_REALM}/protocol/openid-connect/auth"
+    settings.OIDC_OP_TOKEN_ENDPOINT = f"{KEYCLOAK_HOST}/realms/{OIDC_REALM}/protocol/openid-connect/token"
+    settings.OIDC_OP_USER_ENDPOINT = f"{KEYCLOAK_HOST}/realms/{OIDC_REALM}/protocol/openid-connect/userinfo"
+    settings.OIDC_OP_JWKS_ENDPOINT = f"{KEYCLOAK_HOST}/realms/{OIDC_REALM}/protocol/openid-connect/certs"
 
     # User creation & mapping
     settings.OIDC_CREATE_USER = True
