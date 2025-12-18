@@ -26,3 +26,7 @@ def setup(settings):
     settings.OIDC_OP_JWKS_ENDPOINT = "https://auth.csis.gov.ls/realms/master/protocol/openid-connect/certs"
 
     settings.OIDC_RP_SCOPES = "openid profile email"
+
+    settings.LOGIN_URL = '/oidc/authenticate/'
+    settings.LOGOUT_REDIRECT_URL = '/'
+    settings.LOGIN_REDIRECT_URL = '/'
