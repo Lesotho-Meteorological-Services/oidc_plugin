@@ -6,6 +6,11 @@ def setup(settings):
 
     settings.INSTALLED_APPS += ["some_custom_plugin_dep"]
     """
+    settings.SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    settings.USE_X_FORWARDED_HOST = True
+    settings.CSRF_COOKIE_SECURE = True
+    settings.SESSION_COOKIE_SECURE = True
+
     settings.INSTALLED_APPS += ["mozilla_django_oidc"]
     settings.AUTHENTICATION_BACKENDS += ['mozilla_django_oidc.auth.OIDCAuthenticationBackend']
 
