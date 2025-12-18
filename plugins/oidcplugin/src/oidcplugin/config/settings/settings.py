@@ -1,3 +1,5 @@
+import os
+
 def setup(settings):
     """
     This function is called after climweb has setup its own Django settings file but
@@ -6,20 +8,22 @@ def setup(settings):
 
     settings.INSTALLED_APPS += ["some_custom_plugin_dep"]
     """
+    CLIMWEB_DOMAIN = os.environ.get("CLIMWEB_DOMAIN", "http://localhost:8000")
+    OIDC_REALM = os.environ.get("OIDC_REALM", "master")
 
     settings.INSTALLED_APPS += ["mozilla_django_oidc"]
     settings.AUTHENTICATION_BACKENDS += ['mozilla_django_oidc.auth.OIDCAuthenticationBackend']
 
-    settings.OIDC_RP_CLIENT_ID = "share"
-    settings.OIDC_RP_CLIENT_SECRET = "ypz9oJ2MJnCjjl1m3NPCYh5OmbbKOyAN"
+    settings.OIDC_RP_CLIENT_ID =  os.environ.get("OIDC_RP_CLIENT_ID", "climweb-client")
+    settings.OIDC_RP_CLIENT_SECRET = os.environ.get("OIDC_RP_CLIENT_SECRET", "climweb-secret")
 
-    settings.OIDC_RP_CALLBACK_URL = "https://share.csis.gov.ls/oidc/callback/"
+    settings.OIDC_RP_CALLBACK_URL = f"{CLIMWEB_DOMAIN}/oidc/callback/"
     settings.OIDC_RP_SIGN_ALGO = "RS256"
 
-    settings.OIDC_OP_AUTHORIZATION_ENDPOINT = "https://auth.csis.gov.ls/realms/master/protocol/openid-connect/auth"
-    settings.OIDC_OP_TOKEN_ENDPOINT = "https://auth.csis.gov.ls/realms/master/protocol/openid-connect/token"
-    settings.OIDC_OP_USER_ENDPOINT = "https://auth.csis.gov.ls/realms/master/protocol/openid-connect/userinfo"
-    settings.OIDC_OP_JWKS_ENDPOINT = "https://auth.csis.gov.ls/realms/master/protocol/openid-connect/certs"
+    settings.OIDC_OP_AUTHORIZATION_ENDPOINT = f"{CLIMWEB_DOMAIN}/realms/{OIDC_REALM}/protocol/openid-connect/auth"
+    settings.OIDC_OP_TOKEN_ENDPOINT = f"{CLIMWEB_DOMAIN}/realms/{OIDC_REALM}/protocol/openid-connect/token"
+    settings.OIDC_OP_USER_ENDPOINT = f"{CLIMWEB_DOMAIN}/realms/{OIDC_REALM}/protocol/openid-connect/userinfo"
+    settings.OIDC_OP_JWKS_ENDPOINT = f"{CLIMWEB_DOMAIN}/realms/{OIDC_REALM}/protocol/openid-connect/certs"
 
     # User creation & mapping
     settings.OIDC_CREATE_USER = True
