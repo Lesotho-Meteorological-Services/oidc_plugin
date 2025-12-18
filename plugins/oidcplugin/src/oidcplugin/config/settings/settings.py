@@ -9,16 +9,16 @@ def setup(settings):
     settings.INSTALLED_APPS += ["mozilla_django_oidc"]
     settings.AUTHENTICATION_BACKENDS += ['mozilla_django_oidc.auth.OIDCAuthenticationBackend']
 
-    settings.OIDC_RP_CLIENT_ID = "climweb"
-    settings.OIDC_RP_CLIENT_SECRET = "N4PgkYiaF8F2VmEKrAkIOvE3lN1Rci4x"
+    settings.OIDC_RP_CLIENT_ID = "share"
+    settings.OIDC_RP_CLIENT_SECRET = "ypz9oJ2MJnCjjl1m3NPCYh5OmbbKOyAN"
 
     settings.OIDC_RP_CALLBACK_URL = env.str("OIDC_RP_CALLBACK_URL", "-")
     settings.OIDC_RP_SIGN_ALGO = "RS256"
 
-    # OIDC_OP_AUTHORIZATION_ENDPOINT = "http://192.168.1.104:8081/realms/master/protocol/openid-connect/auth"
-    # OIDC_OP_TOKEN_ENDPOINT = "http://192.168.1.104:8081/realms/master/protocol/openid-connect/token"
-    # OIDC_OP_USER_ENDPOINT = "http://192.168.1.104:8081/realms/master/protocol/openid-connect/userinfo"
-    # OIDC_OP_JWKS_ENDPOINT = "http://192.168.1.104:8081/realms/master/protocol/openid-connect/certs"
+# OIDC_OP_AUTHORIZATION_ENDPOINT = "http://192.168.1.104:8081/realms/master/protocol/openid-connect/auth"
+# OIDC_OP_TOKEN_ENDPOINT = "http://192.168.1.104:8081/realms/master/protocol/openid-connect/token"
+# OIDC_OP_USER_ENDPOINT = "http://192.168.1.104:8081/realms/master/protocol/openid-connect/userinfo"
+# OIDC_OP_JWKS_ENDPOINT = "http://192.168.1.104:8081/realms/master/protocol/openid-connect/certs"
 
     settings.OIDC_OP_AUTHORIZATION_ENDPOINT = "https://auth.csis.gov.ls/realms/master/protocol/openid-connect/auth"
     settings.OIDC_OP_TOKEN_ENDPOINT = "https://auth.csis.gov.ls/realms/master/protocol/openid-connect/token"
